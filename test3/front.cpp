@@ -3,40 +3,95 @@
 #include <list>
 using namespace std;
 
+//INGREDIENT
+
 Ingredient::Ingredient(){
-    this->category = unspecified;
-    this->quantity = 1;
+    Food_class* cat = new Food_class;
+    *cat = unspecified
+    this->category = *cat;
+
+    int* quant = new int;
+    *quant = 1;
+    this->quantity = *quant;
 }
 
-Ingredient::Ingredient(int quantity, Food_class category, string expiry date){
-    this.
+Ingredient::Ingredient(int quantity, Food_class category, string expiry_date){
+    this->quantity = quantity;
+    this->category = category;
+    this->expiry_date = expiry_date;
+}
+
+Ingredient::~Ingredient(){
+
+}
+
+void Ingredient::set_FoodClass(Food_class category){
+    this->category = category;
+}
+
+Food_class Ingredient::get_FoodClass(){
+    return this->category;
+}
+
+void Ingredient::set_Quant(int quantity){
+    this->quantity = quantity;
+}
+
+int Ingredient::get_Quant(){
+    return this->quantity;
+}
+
+void Ingredient::set_priority(Priority priority_level){
+    this->priority_level = priority_level;
+}
+
+Priority Ingredient::get_priority(){
+    return this->priority_level;
 }
 
 
+std::string Ingredient::get_expiry_date(){
+    return this->expiry_date;
+}
+//FRIDGE
 
-// replace this 
-void Ingredient::saveToJsonFile(const std ::string& fileIngredients){
-        rapidjson:: Document doc; 
-        doc.SetObject(); 
-        doc.AddMember("expirary_dates", rapidjson::Value(expiry_date.c_str(), doc.GetAllocator()), doc.GetAllocator());
-        doc.AddMember("Quantity", quantity, doc.GetAllocator());
-        std::string prioritystatus;
-        switch (prioritystatus) {
-            case red:
-                prioritystatus = "red";
-                break;
-            case orange:
-                prioritystatus = "orange";
-                break;
-            case green:
-                prioritystatus = "green";
-                break;
-        }
-        rapidjson::Value enumpriority(rapidjson::kStringType);
-        enumpriority.SetString(prioritystatus.c_str(), static_cast<rapidjson::SizeType>(prioritystatus.length()), doc.GetAllocator());
-        doc.AddMember("Priority", enumpriority, doc.GetAllocator());
+Fridge::Fridge(){
+    this->ingredient_list = list<Ingredient>;
+}
 
-        rapidjson::StringBuffer buffer;
-        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-        doc.Accept(writer);
-        std::string jsonStr = buffer.GetString();
+Fridge::Fridge(list<Ingredient> init_list){
+    this->ingredient_list = init_list;
+}
+
+Fridge::~Fridge(){
+
+}
+
+void Fridge::set_list(std::list<Ingredient> new_list){
+    this->ingredient_list = new_list;
+}
+
+void Fridge::saveToJsonFile(const std::string& filename){
+
+
+
+}
+
+list<Ingredient> Fridge::get_list(){
+    return this->ingredient_list;
+}
+
+void Fridge::add_elt(Ingredient elt){
+    this->get_list().push_back(elt);
+}
+
+Ingredient Fridge::pop_elt(){
+    this->get_list().pop_front();
+}
+
+//USER
+
+
+
+
+>>>>>>> 282c9b5093a6fc4c30c7464502c8230a4ed02445
