@@ -71,12 +71,6 @@ void Fridge::set_list(std::list<Ingredient> new_list){
     this->ingredient_list = new_list;
 }
 
-void Fridge::saveToJsonFile(const std::string& filename){
-
-
-
-}
-
 list<Ingredient> Fridge::get_list(){
     return this->ingredient_list;
 }
