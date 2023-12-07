@@ -79,14 +79,8 @@ private:
 
 class User{
 public:
-<<<<<<< HEAD
     User(std::string *username, std::string *password);
     ~User();
-=======
-    User();
-    ~User()
-    void set_username(std::string username);
->>>>>>> 4f5cca9fb27ec4cafd9d977ddfcd38dfc02d060a
     std::string get_username();
     bool check_password(std::string *input_password);
     void set_telegram(std::string *telegram);
