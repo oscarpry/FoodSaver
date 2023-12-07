@@ -2,92 +2,57 @@
 #include "front.hpp"
 #include <iostream>
 #include <list>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 using namespace std;
 
 
-void Ingredient::saveToJsonFile(const std::string& fileINgredient) {
-    rapidjson::Document doc;
-    doc.SetObject();
 
-    doc.AddMember("expiry_date", rapidjson::Value(expiry_date.c_str(), doc.GetAllocator()).Move(), doc.GetAllocator());
-    doc.AddMember("Quantity", quantity, doc.GetAllocator());
 
-    std::string prioritystatus;
-    switch (priority_level) {
-    case Priority::red:
-        prioritystatus = "red";
-        break;
-    case Priority::orange:
-        prioritystatus = "orange";
-        break;
-    case Priority::green:
-        prioritystatus = "green";
-        break;
-    }
+// For ingredients
 
-    rapidjson::Value enumpriority(rapidjson::kStringType);
-    enumpriority.SetString(prioritystatus.c_str(), static_cast<rapidjson::SizeType>(prioritystatus.length()), doc.GetAllocator());
-    doc.AddMember("Priority", enumpriority, doc.GetAllocator());
+json toJson() {
+    json ingredientJson;
+    ingredientJson["name"] = *name;
+    ingredientJson["quantity"] = *quantity;
+    ingredientJson["category"] = category->toJson();
+    ingredientJson["expiry_date"] = *expiry_date;
+    ingredientJson["priority_level"] = static_cast<int>(priority_level);
 
-    rapidjson::StringBuffer buffer;
-    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-    doc.Accept(writer);
-    std::string jsonStr = buffer.GetString();
-
-    std::ofstream outputFile(filename);
-    if (outputFile.is_open()) {
-        outputFile << jsonStr;
-        outputFile.close();
-        std::cout << "Status saved to " << filename << " successfully." << std::endl;
-    } else {
-        std::cerr << "Unable to open file: " << filename << std::endl;
-    }
+    return ingredientJson;
 }
 
 
-void Fridge :: saveListToJson(const std::string& filename) {
-    rapidjson::Document doc;
-    doc.SetArray();
+// For Fridge
+json toJson() {
+    json fridgeJson;
+    json ingredientsJsonArray;
 
-    for (const Ingredient& ingredient : ingredient_list) {
-        rapidjson::Value obj(rapidjson::kObjectType);
-        obj.AddMember("expiry_date", rapidjson::Value(ingredient.get_expiry_date().c_str(), doc.GetAllocator()).Move(), doc.GetAllocator());
-        obj.AddMember("Quantity", ingredient.get_Quantity(), doc.GetAllocator());
-
-        std::string prioritystatus;
-        switch (ingredient.get_priority()) {
-        case Priority::red:
-            prioritystatus = "red";
-            break;
-        case Priority::orange:
-            prioritystatus = "orange";
-            break;
-        case Priority::green:
-            prioritystatus = "green";
-            break;
-        }
-
-        rapidjson::Value enumpriority(rapidjson::kStringType);
-        enumpriority.SetString(prioritystatus.c_str(), static_cast<rapidjson::SizeType>(prioritystatus.length()), doc.GetAllocator());
-        obj.AddMember("Priority", enumpriority, doc.GetAllocator());
-
-        doc.PushBack(obj, doc.GetAllocator());
+    // Iterate through each ingredient in the list and convert to JSON
+    for (const Ingredient& ingredient : *ingredient_list) {
+        ingredientsJsonArray.push_back(ingredient.toJson());
     }
 
-    rapidjson::StringBuffer buffer;
-    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-    doc.Accept(writer);
-    std::string jsonStr = buffer.GetString();
+    // Add ingredients array to fridge JSON
+    fridgeJson["ingredient_list"] = ingredientsJsonArray;
 
-    std::ofstream outputFile(filename);
-    if (outputFile.is_open()) {
-        outputFile << jsonStr;
-        outputFile.close();
-        std::cout << "Fridge content saved to " << filename << " successfully." << std::endl;
-    } else {
-        std::cerr << "Unable to open file: " << filename << std::endl;
-    }
+    return fridgeJson;
 }
+
+
+// For User :
+
+json User :: intoJson(){
+    json Json_dic;
+    Json_dic ["username"] = *username;
+    userJson["password"] = *password;
+    userJson["telegram_username"] = *telegram_username;
+    userJson ["user_fridge"] = user_fridge ->toJson();
+    return Json_dic ;
+
+}
+
+
 
 
 

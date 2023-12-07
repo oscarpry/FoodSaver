@@ -91,6 +91,8 @@ private:
     std::string* password = new std::string;
     std::string* telegram_username = new std::string;
     Fridge* user_fridge = new Fridge();
+    void saveToJsonFile(const std::string& fileUser);
+
 };
 
 ////////////////////////////////////////////////////////////////////////////
