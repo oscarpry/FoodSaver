@@ -67,6 +67,10 @@ Priority Ingredient::get_priority(){
     return this->priority_level;
 }
 
+
+std::string Ingredient::get_expiry_date(){
+    return this->expiry_date;
+}
 //FRIDGE
 
 Fridge::Fridge(){
@@ -120,6 +124,7 @@ bool User::check_password(std::string *input_password) {
     return *input_password == *password;
 }
 
+<<<<<<< HEAD
 void User::set_telegram(std::string *telegram) {
     telegram_username = telegram;
 }
@@ -127,3 +132,6 @@ void User::set_telegram(std::string *telegram) {
 std::string User::get_telegram() {
     return *telegram_username;
 }
+=======
+>>>>>>> 282c9b5093a6fc4c30c7464502c8230a4ed02445
+>>>>>>> 4f5cca9fb27ec4cafd9d977ddfcd38dfc02d060a

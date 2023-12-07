@@ -43,6 +43,8 @@ public:
     bool operator==(const Ingredient& other) const;
     void saveToJsonFile(const std::string& fileIngredient);
 
+    
+
 private:
     std::string *name = new std::string;
     Food_class *category = new Food_class;
@@ -61,8 +63,13 @@ public:
     void set_list(std::list<Ingredient> new_list);
     std::list<Ingredient> get_list();
     void add_elt(Ingredient elt);
+
     Ingredient pop_elt(Ingredient *getit);
     void saveToJsonFile(const std::string& fileFridge);
+
+    
+    
+
 
 private:
     std::list<Ingredient>* ingredient_list;
@@ -72,8 +79,14 @@ private:
 
 class User{
 public:
+<<<<<<< HEAD
     User(std::string *username, std::string *password);
     ~User();
+=======
+    User();
+    ~User()
+    void set_username(std::string username);
+>>>>>>> 4f5cca9fb27ec4cafd9d977ddfcd38dfc02d060a
     std::string get_username();
     bool check_password(std::string *input_password);
     void set_telegram(std::string *telegram);
