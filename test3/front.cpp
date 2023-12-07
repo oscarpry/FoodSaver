@@ -28,9 +28,6 @@ string Ingredient::get_name() const {
     return *name;
 }
 
-//bool Ingredient::operator==(Ingredient other){
-//    return ( this->get_name() == other.get_name());
-//}
 
 bool Ingredient::operator==(const Ingredient& other) const {
     return (this->get_name() == other.get_name());
