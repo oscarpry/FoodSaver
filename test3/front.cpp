@@ -64,10 +64,6 @@ Priority Ingredient::get_priority(){
     return this->priority_level;
 }
 
-
-std::string Ingredient::get_expiry_date(){
-    return this->expiry_date;
-}
 //FRIDGE
 
 Fridge::Fridge(){
