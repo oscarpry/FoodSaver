@@ -8,6 +8,7 @@ CONFIG += c++17 cmdline
 
 SOURCES += \
         front.cpp \
+        link_pocco_data.cpp \
         main.cpp
 
 # Default rules for deployment.

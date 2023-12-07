@@ -9,11 +9,11 @@ void Ingredient::saveToJsonFile(const std::string& fileINgredient) {
     rapidjson::Document doc;
     doc.SetObject();
 
-    doc.AddMember("expiry_date", rapidjson::Value(get_expiry_date().c_str(), doc.GetAllocator()).Move(), doc.GetAllocator());
-    doc.AddMember("Quantity", get_Quant(), doc.GetAllocator());
+    doc.AddMember("expiry_date", rapidjson::Value(expiry_date.c_str(), doc.GetAllocator()).Move(), doc.GetAllocator());
+    doc.AddMember("Quantity", quantity, doc.GetAllocator());
 
     std::string prioritystatus;
-    switch (get_priority()) {
+    switch (priority_level) {
         case Priority::red:
             prioritystatus = "red";
             break;
@@ -88,4 +88,6 @@ void Fridge :: saveListToJson(const std::string& filename) {
             std::cerr << "Unable to open file: " << filename << std::endl;
         }
     }
+
+
 
