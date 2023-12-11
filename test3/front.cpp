@@ -38,6 +38,15 @@ Ingredient::~Ingredient(){
     delete category;
     delete quantity;
     delete expiry_date;
+    delete priority_level;
+}
+
+string Ingredient::get_name() const {
+    return *name;
+}
+
+bool Ingredient::operator==(const Ingredient& other) const {
+    return (this->get_name() == other.get_name());
 }
 
 void Ingredient::set_FoodClass(Food_class *category){
@@ -56,12 +65,12 @@ int Ingredient::get_Quantity(){
     return *quantity;
 }
 
-void Ingredient::set_priority(Priority priority_level){
+void Ingredient::set_priority(Priority *priority_level){
     this->priority_level = priority_level;
 }
 
 Priority Ingredient::get_priority(){
-    return this->priority_level;
+    return *priority_level;
 }
 
 //FRIDGE
@@ -76,6 +85,7 @@ Fridge::Fridge(list<Ingredient> init_list){
 }
 
 Fridge::~Fridge(){
+    delete ingredient_list;
 }
 
 void Fridge::set_list(std::list<Ingredient> new_list){
@@ -90,7 +100,6 @@ void Fridge::add_elt(Ingredient elt){
     this->get_list().push_back(elt);
 }
 
-// this does not work
 Ingredient Fridge::pop_elt(Ingredient *getit){
     this->get_list().remove(*getit);
     return *getit;
@@ -123,4 +132,23 @@ void User::set_telegram(std::string *telegram) {
 
 std::string User::get_telegram() {
     return *telegram_username;
+}
+
+//OFFER
+Offer::Offer(std::list<Ingredient> *ingredient_list) {
+    this->ingredient_list = ingredient_list;
+    *price = (double) 0;
+}
+
+Offer::~Offer() {
+    delete ingredient_list;
+    delete price;
+}
+
+void Offer::set_price(double *price) {
+    this->price = price;
+}
+
+double Offer::get_price() {
+    return *price;
 }

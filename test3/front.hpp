@@ -33,14 +33,14 @@ public:
     Ingredient(std::string *name);
     Ingredient(std::string *name, int *quantity,Food_class *category, std::string *expiry_date);
     ~Ingredient();
+    std::string get_name() const;
+    bool operator==(const Ingredient& other) const;
     void set_FoodClass(Food_class *category);
     Food_class get_FoodClass();
     void set_Quantity(int *quantity);
     int get_Quantity();
-    void set_priority(Priority priority_level);
+    void set_priority(Priority *priority_level);
     Priority get_priority();
-    std::string get_name() const;
-    bool operator==(const Ingredient& other) const;
     void saveToJsonFile(const std::string& fileIngredient);
 
     
@@ -50,7 +50,7 @@ private:
     Food_class *category = new Food_class;
     int *quantity = new int;
     std::string *expiry_date = new std::string;
-    Priority priority_level;
+    Priority *priority_level = new Priority;
 };
 
 ////////////////////////////////////////////////////////////////////////////
@@ -66,13 +66,31 @@ public:
 
     Ingredient pop_elt(Ingredient *getit);
     void saveToJsonFile(const std::string& fileFridge);
+    std::list<Ingredient> sort_ingredients(std::string* sort_key);
 
     
     
 
 
 private:
-    std::list<Ingredient>* ingredient_list;
+    std::list<Ingredient>* ingredient_list = new std::list<Ingredient>;
+};
+
+////////////////////////////////////////////////////////////////////////////
+
+class Offer {
+public:
+    Offer(std::list<Ingredient> *ingredient_list);
+    ~Offer();
+    void set_price(double *price);
+    double get_price();
+
+private:
+    std::list<Ingredient>* ingredient_list = new std::list<Ingredient>;
+    double* price = new double;
+    // PHOTO
+
+    // add filters in case don't want to see meat and other products
 };
 
 ////////////////////////////////////////////////////////////////////////////
@@ -91,6 +109,7 @@ private:
     std::string* password = new std::string;
     std::string* telegram_username = new std::string;
     Fridge* user_fridge = new Fridge();
+<<<<<<< HEAD
     void saveToJsonFile(const std::string& fileUser);
 
 };
@@ -113,6 +132,9 @@ private:
     // PHOTO
 
     // add filters in case don't want to see meat and other products
+=======
+    std::list<Offer>* offer_list = new std::list<Offer>;
+>>>>>>> e4b027198d6b2090b99a6870f214296cde7d54f5
 };
 
 #endif // FRONT_HPP
