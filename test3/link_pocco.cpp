@@ -28,12 +28,10 @@ json toJson() {
     json fridgeJson;
     json ingredientsJsonArray;
 
-    // Iterate through each ingredient in the list and convert to JSON
     for (const Ingredient& ingredient : *ingredient_list) {
         ingredientsJsonArray.push_back(ingredient.toJson());
     }
 
-    // Add ingredients array to fridge JSON
     fridgeJson["ingredient_list"] = ingredientsJsonArray;
 
     return fridgeJson;
