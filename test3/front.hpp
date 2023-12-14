@@ -4,7 +4,9 @@
 #include <iostream>
 #include <list>
 #include <string>
-
+#include "nlohmann/json.hpp"
+using json = nlohmann::json;
+using namespace std;
 
 enum Food_class{
     fruit,
@@ -41,9 +43,9 @@ public:
     int get_Quantity();
     void set_priority(Priority *priority_level);
     Priority get_priority();
-    void saveToJsonFile(const std::string& fileIngredient);
+    json toJson() const;
 
-    
+
 
 private:
     std::string *name = new std::string;
@@ -63,13 +65,10 @@ public:
     void set_list(std::list<Ingredient> new_list);
     std::list<Ingredient> get_list();
     void add_elt(Ingredient elt);
-
     Ingredient pop_elt(Ingredient *getit);
     void saveToJsonFile(const std::string& fileFridge);
     std::list<Ingredient> sort_ingredients(std::string* sort_key);
-
-    
-    
+    json toJson() const;
 
 
 private:
@@ -84,6 +83,8 @@ public:
     ~Offer();
     void set_price(double *price);
     double get_price();
+    json toJson() const;
+
 
 private:
     std::list<Ingredient>* ingredient_list = new std::list<Ingredient>;
@@ -103,38 +104,14 @@ public:
     bool check_password(std::string *input_password);
     void set_telegram(std::string *telegram);
     std::string get_telegram();
+    json toJson() const;
 
 private:
     std::string* username = new std::string;
     std::string* password = new std::string;
     std::string* telegram_username = new std::string;
     Fridge* user_fridge = new Fridge();
-<<<<<<< HEAD
-    void saveToJsonFile(const std::string& fileUser);
-
-};
-
-////////////////////////////////////////////////////////////////////////////
-
-class Offer {
-public:
-    Offer();
-    ~Offer();
-    void set_price(double price);
-    double get_price();
-    void set_user(User user);
-    User get_user();
-
-private:
-    std::list<Ingredient> ingredient_list;
-    double price;
-    User username;
-    // PHOTO
-
-    // add filters in case don't want to see meat and other products
-=======
     std::list<Offer>* offer_list = new std::list<Offer>;
->>>>>>> e4b027198d6b2090b99a6870f214296cde7d54f5
 };
 
 #endif // FRONT_HPP

@@ -2,8 +2,7 @@
 #include "front.hpp"
 #include <iostream>
 #include <list>
-
-#include <nlohmann/json.hpp>
+#include "nlohmann/json.hpp"
 using json = nlohmann::json;
 using namespace std;
 
@@ -12,22 +11,18 @@ using namespace std;
 
 // For ingredients
 
-
-
-json Ingredient ::  toJson() {
+json Ingredient::toJson() const {
     json ingredientJson;
     ingredientJson["name"] = *name;
     ingredientJson["quantity"] = *quantity;
-    ingredientJson["category"] = category->toJson();
-    ingredientJson["expiry_date"] = *expiry_date;
-    ingredientJson["priority_level"] = static_cast<int>(priority_level);
-
+    // Add serialization for other attributes if needed
     return ingredientJson;
+
 }
 
-
 // For Fridge
-json Fridge:: toJson() {
+
+json Fridge::toJson() const {
     json fridgeJson;
     json ingredientsJsonArray;
 
@@ -36,24 +31,33 @@ json Fridge:: toJson() {
     }
 
     fridgeJson["ingredient_list"] = ingredientsJsonArray;
-
     return fridgeJson;
 }
 
-
 // For User :
 
-json User :: toJson(){
-    json Json_dic;
-    Json_dic ["username"] = *username;
-    userJson["password"] = *password;
-    userJson["telegram_username"] = *telegram_username;
-    userJson ["user_fridge"] = user_fridge ->toJson();
-    return Json_dic ;
+json Offer:: toJson() const {
+    json offerJson;
+    offerJson["price"] = *price; // Assuming price is a pointer to double
 
+    json ingredientsJsonArray;
+    for (const Ingredient& ingredient : *ingredient_list) {
+        ingredientsJsonArray.push_back(ingredient.toJson());
+    }
+    offerJson["ingredient_list"] = ingredientsJsonArray;
+
+    return offerJson;
 }
+// For Offer
 
 
+json User ::toJson() const {
+    json userJson;
+    userJson["username"] = *username;
+    userJson["password"] = *password;
+    // ... (Other attributes)
+    return userJson;
+}
 
 
 

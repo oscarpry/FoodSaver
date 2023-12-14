@@ -10,7 +10,7 @@ SOURCES += \
         front.cpp \
         link_pocco.cpp \
         main.cpp
-        link_pocco.cpp \
+
 
 
 # Default rules for deployment.
@@ -19,4 +19,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    front.hpp
+    front.hpp \

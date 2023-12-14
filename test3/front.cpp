@@ -24,16 +24,7 @@ Ingredient::Ingredient(string *name, int *quantity, Food_class *category, string
     this->expiry_date = expiry_date;
 }
 
-string Ingredient::get_name() const {
-    return *name;
-}
-
-
-bool Ingredient::operator==(const Ingredient& other) const {
-    return (this->get_name() == other.get_name());
-}
-
-Ingredient::~Ingredient(){
+Ingredient::~Ingredient() {
     delete name;
     delete category;
     delete quantity;
