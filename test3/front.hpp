@@ -43,6 +43,8 @@ public:
     Priority get_priority();
     void saveToJsonFile(const std::string& fileIngredient);
 
+    
+
 private:
     std::string *name = new std::string;
     Food_class *category = new Food_class;
@@ -61,9 +63,14 @@ public:
     void set_list(std::list<Ingredient> new_list);
     std::list<Ingredient> get_list();
     void add_elt(Ingredient elt);
+
     Ingredient pop_elt(Ingredient *getit);
     void saveToJsonFile(const std::string& fileFridge);
     std::list<Ingredient> sort_ingredients(std::string* sort_key);
+
+    
+    
+
 
 private:
     std::list<Ingredient>* ingredient_list = new std::list<Ingredient>;
@@ -102,7 +109,32 @@ private:
     std::string* password = new std::string;
     std::string* telegram_username = new std::string;
     Fridge* user_fridge = new Fridge();
+<<<<<<< HEAD
+    void saveToJsonFile(const std::string& fileUser);
+
+};
+
+////////////////////////////////////////////////////////////////////////////
+
+class Offer {
+public:
+    Offer();
+    ~Offer();
+    void set_price(double price);
+    double get_price();
+    void set_user(User user);
+    User get_user();
+
+private:
+    std::list<Ingredient> ingredient_list;
+    double price;
+    User username;
+    // PHOTO
+
+    // add filters in case don't want to see meat and other products
+=======
     std::list<Offer>* offer_list = new std::list<Offer>;
+>>>>>>> e4b027198d6b2090b99a6870f214296cde7d54f5
 };
 
 #endif // FRONT_HPP

@@ -8,6 +8,7 @@ CONFIG += c++17 cmdline
 
 SOURCES += \
         front.cpp \
+        link_pocco.cpp \
         main.cpp
         link_pocco.cpp \
 

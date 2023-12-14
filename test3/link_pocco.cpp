@@ -2,16 +2,19 @@
 #include "front.hpp"
 #include <iostream>
 #include <list>
-//#include <nlohmann/json.hpp>
-//using json = nlohmann::json;
+
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 using namespace std;
 
 
 
 
 // For ingredients
-/*
-json toJson() {
+
+
+
+json Ingredient ::  toJson() {
     json ingredientJson;
     ingredientJson["name"] = *name;
     ingredientJson["quantity"] = *quantity;
@@ -24,7 +27,7 @@ json toJson() {
 
 
 // For Fridge
-json toJson() {
+json Fridge:: toJson() {
     json fridgeJson;
     json ingredientsJsonArray;
 
@@ -40,7 +43,7 @@ json toJson() {
 
 // For User :
 
-json User :: intoJson(){
+json User :: toJson(){
     json Json_dic;
     Json_dic ["username"] = *username;
     userJson["password"] = *password;
@@ -49,7 +52,9 @@ json User :: intoJson(){
     return Json_dic ;
 
 }
-*/
+
+
+
 
 
 
