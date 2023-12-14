@@ -9,7 +9,6 @@ using json = nlohmann::json;
 using namespace std;
 
 
-
 enum Food_class{
     fruit,
     vegetable,
@@ -45,7 +44,10 @@ public:
     int get_Quantity();
     void set_priority(Priority *priority_level);
     Priority get_priority();
-    json toJson () const;
+
+    json toJson() const;
+
+
 
 private:
     std::string *name = new std::string;
@@ -67,8 +69,9 @@ public:
     void add_elt(Ingredient elt);
     Ingredient pop_elt(Ingredient *getit);
     std::list<Ingredient> sort_ingredients(std::string* sort_key);
-    json toJson () const;
-    
+
+    json toJson() const;
+
 
 private:
     std::list<Ingredient>* ingredient_list = new std::list<Ingredient>;
@@ -82,7 +85,9 @@ public:
     ~Offer();
     void set_price(double *price);
     double get_price();
-    json toJson () const;
+
+    json toJson() const;
+
 
 private:
     std::list<Ingredient>* ingredient_list = new std::list<Ingredient>;

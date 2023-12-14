@@ -2,7 +2,7 @@
 #include "front.hpp"
 #include <iostream>
 #include <list>
-#include "nlohmann/json.hpp";
+#include "nlohmann/json.hpp"
 using json = nlohmann::json;
 using namespace std;
 
@@ -47,11 +47,10 @@ json Offer:: toJson() const {
     offerJson["ingredient_list"] = ingredientsJsonArray;
 
     return offerJson;
+
 }
-// For Offer
 
-
-json User ::toJson() const {
+json User::toJson() const {
     json userJson;
     userJson["username"] = *username;
     userJson["password"] = *password;
